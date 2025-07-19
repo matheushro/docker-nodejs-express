@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  nodejs-app:
+    build: .
+    container_name: nodejs-22
+    ports:
+      - "2000:3000"
+    volumes:
+        - ./:/app
+    develop:
+      watch:
+          - action: sync
+            path: ./src
+            target: /app/src
+  
+          - action: rebuild
+            path: package.json
+            target: /app
+        
